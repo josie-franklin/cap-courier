@@ -4,6 +4,9 @@
 
 In the project directory, you can run:
 
+font from: https://www.1001fonts.com/chomsky-font.html
+and from: https://fontsgeek.com/fonts/Cheltenham-Bold
+
 ### `npm start`
 
 Runs the app in the development mode.\
