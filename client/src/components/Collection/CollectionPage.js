@@ -1,21 +1,23 @@
-import React from "react";
+import React, {useContext, useEffect } from "react";
+import { CollectionContext } from "../../context/CollectionContext";
+import SearchResults from "./SearchResults";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import bottlecapImage from "../../images/bottlecap.png";
 
 const SearchBar = styled(TextField)(() => ({
   width: "100%",
 }));
 
-const ImageContainer = styled(Box)(() => ({
-  width: "150px",
-}));
-
 const CollectionPage = () => {
+  const { getAllBottlecaps } = useContext(CollectionContext);
+
+  useEffect(() => {
+      getAllBottlecaps();
+  }, []);
+
   return (
     <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px 0" }}>
       <Box sx={{ margin: "0 20px" }}>
@@ -39,46 +41,9 @@ const CollectionPage = () => {
         <TextField select sx={{ width: "15%" }} />
         <TextField select sx={{ width: "15%" }} />
       </Stack>
-      <Box sx={{marginTop: "20px"}}>
-        <Grid container>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid><Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid><Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid><Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid><Grid item xs={6} sm={4} md={3} lg={2}>
-            <ImageContainer>
-              <img src={bottlecapImage} style={{ width: "100%" }} />
-            </ImageContainer>
-          </Grid>
-        </Grid>
-      </Box>
+
+      <SearchResults />
+
     </Box>
   );
 };

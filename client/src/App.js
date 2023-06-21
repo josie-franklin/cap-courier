@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CollectionContextProvider from "./context/CollectionContext";
 import Header from "./components/Header";
 import HomePage from "./components/Home/HomePage";
 import CollectionPage from "./components/Collection/CollectionPage";
@@ -28,7 +29,7 @@ const App = () => {
             exact
             key="Collection"
             path="/collection"
-            element={<CollectionPage />}
+            element={<CollectionContextProvider><CollectionPage /></CollectionContextProvider>}
           />
           <Route
             exact
