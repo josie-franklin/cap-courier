@@ -32,7 +32,7 @@ const ArticleContent = styled(Typography)(() => ({
 
 const HomePage = () => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px 0" }}>
+    <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px" }}>
       <Grid container>
         <Grid item xs={12} md={9}>
           <Stack>

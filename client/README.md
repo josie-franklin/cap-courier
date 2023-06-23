@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 font from: https://www.1001fonts.com/chomsky-font.html
 and from: https://fontsgeek.com/fonts/Cheltenham-Bold
-
+ripped paper https://www.vecteezy.com/png/9664231-torn-sheets-of-paper-png-transparent
 ### `npm start`
 
 Runs the app in the development mode.\

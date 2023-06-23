@@ -11,29 +11,29 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get("/:id", (req, res) => {
-//   Bottlecap.findAll({
-//     where: {
-//       [Op.or]: [
-//         { bookNumber: req.params.id },
-//         { title: { [Op.like]: `%${req.params.id}%` } },
-//         { composer: { [Op.like]: `%${req.params.id}%` } },
-//         { arranger: { [Op.like]: `%${req.params.id}%` } },
-//       ],
-//     },
-//   })
-//     .then((dbBottlecapData) => {
-//       if (!dbBottlecapData) {
-//         res.status(404).json({ message: "No Bottlecap found." });
-//         return;
-//       }
-//       res.json(dbBottlecapData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+router.get("/:search", (req, res) => {
+  Bottlecap.findAll({
+    where: {
+      [Op.or]: [
+        { id: req.params.search },
+        { source: { [Op.like]: `%${req.params.search}%` } },
+        { category: { [Op.like]: `%${req.params.search}%` } },
+        { location: { [Op.like]: `%${req.params.search}%` } },
+      ],
+    },
+  })
+    .then((data) => {
+      if (!data) {
+        res.status(404).json({ message: "No bottlecap found." });
+        return;
+      }
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // router.get("/:id", (req, res) => {
 //   Bottlecap.findOne({
