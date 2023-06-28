@@ -1,5 +1,6 @@
 const seedBottlecaps = require('./bottlecapSeeds');
 const seedTags = require('./tagSeeds');
+// const seedBottlecapTags = require('./bottlecapTagSeeds');
 
 const sequelize = require('../config/connection');
 
@@ -9,6 +10,7 @@ const seedAll = async () => {
 
     await seedBottlecaps();
     await seedTags();
+    // await seedBottlecapTags();
     console.log('--------------');
   
     process.exit(0);

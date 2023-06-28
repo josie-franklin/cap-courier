@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { Op } = require("sequelize");
 const { Tag } = require("../../models");
 
 router.get("/", (req, res) => {

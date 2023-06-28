@@ -11,8 +11,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import bottlecapImage from "../../images/bottlecap.png";
 import bottlecapImageWithBG from "../../images/bottlecapWithBG.jpg";
 import rippedPaper from "../../images/rippedpapertextured.PNG";
@@ -70,9 +70,8 @@ const SearchResults = () => {
     setDialogOpen(true);
   };
 
-  // useEffect(() => {
-
-  // }, [bottlecapObj]);
+  useEffect(() => {
+  }, [bottlecapObj]);
 
   const results = bottlecapObj ? (
     <Grid container>
@@ -129,7 +128,13 @@ const SearchResults = () => {
             <Grid item xs={6}>
               <Stack direction="row" justifyContent="space-between">
                 <ArticleTitle>{currentCap.source}</ArticleTitle>
-                <IconButton onClick={() => {setDialogOpen(false)}}><CloseIcon /></IconButton>
+                <IconButton
+                  onClick={() => {
+                    setDialogOpen(false);
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
               </Stack>
               <ArticleContent>{currentCap.category}</ArticleContent>
             </Grid>
