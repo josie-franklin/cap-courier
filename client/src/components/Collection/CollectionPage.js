@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CollectionContext } from "../../context/CollectionContext";
-import SearchResults from "./SearchResults";
+import SearchResults from "./CollectionComponents/SearchResults";
+import Filters from "./CollectionComponents/Filters";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
@@ -19,7 +21,7 @@ const SearchBar = styled(Box)(() => ({
 }));
 
 const CollectionPage = () => {
-  const { getAllTags, getAllBottlecaps, searchBottlecaps } =
+  const { drinkCategoryArr, getAllTags, getAllBottlecaps, searchBottlecaps } =
     useContext(CollectionContext);
 
   const [searchInput, setSearchInput] = useState();
@@ -31,7 +33,7 @@ const CollectionPage = () => {
 
   const handleSubmit = () => {
     console.log(searchInput);
-    const sendInput = searchInput.trim()
+    const sendInput = searchInput.trim();
     if (!sendInput) {
       getAllBottlecaps();
     } else {
@@ -49,6 +51,7 @@ const CollectionPage = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px 0" }}>
+
       <SearchBar>
         <Stack direction="row">
           <Input
@@ -66,42 +69,18 @@ const CollectionPage = () => {
           </IconButton>
         </Stack>
       </SearchBar>
-      <Stack
-        direction="row"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "20px 20px 0",
-        }}
-      >
-        <TextField select defaultValue="1" sx={{ width: "15%" }}>
-          <MenuItem key="1" value="1">
-            Placeholder
-          </MenuItem>
-        </TextField>
-        <TextField select defaultValue="1" sx={{ width: "15%" }}>
-          <MenuItem key="1" value="1">
-            Placeholder
-          </MenuItem>
-        </TextField>
-        <TextField select defaultValue="1" sx={{ width: "15%" }}>
-          <MenuItem key="1" value="1">
-            Placeholder
-          </MenuItem>
-        </TextField>
-        <TextField select defaultValue="1" sx={{ width: "15%" }}>
-          <MenuItem key="1" value="1">
-            Placeholder
-          </MenuItem>
-        </TextField>
-        <TextField select defaultValue="1" sx={{ width: "15%" }}>
-          <MenuItem key="1" value="1">
-            Placeholder
-          </MenuItem>
-        </TextField>
-      </Stack>
 
-      <SearchResults />
+<Box sx={{margin: "0 20px"}}>
+      <Grid container>
+        <Grid item xs={0} md={2}>
+          <Filters />
+        </Grid>
+        <Grid item xs={12} md={10}>
+          <SearchResults />
+        </Grid>
+      </Grid>
+</Box>
+  
     </Box>
   );
 };

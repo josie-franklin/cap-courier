@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { CollectionContext } from "../../context/CollectionContext";
+import { CollectionContext } from "../../../context/CollectionContext";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -13,10 +13,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import bottlecapImage from "../../images/bottlecap.png";
-import bottlecapImageWithBG from "../../images/bottlecapWithBG.jpg";
-import rippedPaper from "../../images/rippedpapertextured.PNG";
-import paperclip from "../../images/paperclip2.png";
+import bottlecapImage from "../../../images/bottlecap.png";
+// import bottlecapImageWithBG from "../../../images/bottlecapWithBG.jpg";
+import rippedPaper from "../../../images/rippedpapertextured.PNG";
+import paperclip from "../../../images/paperclip2.png";
 
 const ResultImageContainer = styled(Box)(() => ({
   width: "100%",
@@ -76,13 +76,13 @@ const SearchResults = () => {
   const results = bottlecapObj ? (
     <Grid container>
       {bottlecapObj.map((bottlecap, i) => (
-        <Grid key={i} item xs={6} sm={4} md={3} lg={2} xl={1}>
+        <Grid key={i} item xs={6} sm={4} md={3} lg={2}>
           <ResultImageContainer
             onClick={() => {
               openDialog(bottlecap);
             }}
           >
-            <img src={bottlecapImageWithBG} style={{ width: "100%" }} />
+            <img src={bottlecapImage} style={{ width: "100%" }} />
             <ImageLabel>{bottlecap.source.toUpperCase()}</ImageLabel>
           </ResultImageContainer>
         </Grid>
@@ -121,7 +121,7 @@ const SearchResults = () => {
           <Grid container>
             <Grid item xs={6}>
               <DialogImageContainer>
-                <img src={bottlecapImageWithBG} style={{ width: "100%" }} />
+                <img src={bottlecapImage} style={{ width: "100%" }} />
                 <ImageLabel>{currentCap.location}</ImageLabel>
               </DialogImageContainer>
             </Grid>

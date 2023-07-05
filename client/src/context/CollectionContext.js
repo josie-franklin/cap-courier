@@ -8,11 +8,11 @@ class CollectionContextProvider extends Component {
   state = {
     bottlecapObj: null,
     tagObj: null,
+    drinkCategoryArr: ["Soft Drink", "Hard Drink"]
   };
 
   getAllTags = async () => {
     tagApi.getAllTags().then((data) => {
-      // console.log(data);
       this.setState({ tagObj: data });
     });
   };
@@ -36,6 +36,8 @@ class CollectionContextProvider extends Component {
       <CollectionContext.Provider
         value={{
           bottlecapObj: this.state.bottlecapObj,
+          tagObj: this.state.tagObj,
+          drinkCategoryArr: this.state.drinkCategoryArr,
           getAllTags: this.getAllTags,
           getAllBottlecaps: this.getAllBottlecaps,
           searchBottlecaps: this.searchBottlecaps,
