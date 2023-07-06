@@ -51,7 +51,6 @@ const CollectionPage = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px 0" }}>
-
       <SearchBar>
         <Stack direction="row">
           <Input
@@ -70,17 +69,16 @@ const CollectionPage = () => {
         </Stack>
       </SearchBar>
 
-<Box sx={{margin: "0 20px"}}>
-      <Grid container>
-        <Grid item xs={0} md={2}>
-          <Filters />
+      <Box sx={{ margin: "0 20px" }}>
+        <Grid container>
+          <Grid item xs={0} md={3} xl={2}>
+            <Filters />
+          </Grid>
+          <Grid item xs={12} md={9} xl={10}>
+            <SearchResults />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={10}>
-          <SearchResults />
-        </Grid>
-      </Grid>
-</Box>
-  
+      </Box>
     </Box>
   );
 };

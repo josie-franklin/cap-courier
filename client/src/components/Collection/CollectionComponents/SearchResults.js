@@ -70,8 +70,7 @@ const SearchResults = () => {
     setDialogOpen(true);
   };
 
-  useEffect(() => {
-  }, [bottlecapObj]);
+  useEffect(() => {}, [bottlecapObj]);
 
   const results = bottlecapObj ? (
     <Grid container>

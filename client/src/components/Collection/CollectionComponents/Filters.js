@@ -7,9 +7,16 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 
 const ArticleTitle = styled(Typography)(() => ({
   fontFamily: "cheltenham",
@@ -25,6 +32,24 @@ const Filters = () => {
   const [shapeTags, setShapeTags] = useState(null);
   const [objectTags, setObjectTags] = useState(null);
 
+  const [colorsOpen, setColorsOpen] = useState(false);
+  const [shapesOpen, setShapesOpen] = useState(false);
+  const [objectsOpen, setObjectsOpen] = useState(false);
+
+  const [checkedFilters, setCheckedFilters] = useState([]);
+
+  const handleFilterCheck = (e) => {
+    const isChecked = e.target.checked;
+    const filter = e.target.value;
+    let filtersArr = checkedFilters;
+
+    if (isChecked) {
+      setCheckedFilters([...filtersArr, filter]);
+    } else {
+      setCheckedFilters(filtersArr.filter((f) => f != filter));
+    }
+  };
+
   useEffect(() => {
     if (tagObj) {
       var colorsArr = [];
@@ -32,20 +57,19 @@ const Filters = () => {
       var objectsArr = [];
 
       tagObj.forEach((tag) => {
-        if (tag.category == "Color") {
+        if (tag.category === "Color") {
           colorsArr.push(tag);
         }
-        if (tag.category == "Shape") {
+        if (tag.category === "Shape") {
           shapesArr.push(tag);
         }
-        if (tag.category == "Object") {
+        if (tag.category === "Object") {
           objectsArr.push(tag);
         }
       });
       setColorTags(colorsArr);
       setShapeTags(shapesArr);
       setObjectTags(objectsArr);
-      console.log(colorsArr);
     }
   }, [tagObj]);
 
@@ -61,7 +85,11 @@ const Filters = () => {
         <ArticleTitle>Filters</ArticleTitle>
 
         <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="For Trade" />
+          <FormControlLabel
+            sx={{ marginBottom: "16px" }}
+            control={<Checkbox />}
+            label="For Trade Only"
+          />
 
           <TextField
             select
@@ -91,50 +119,111 @@ const Filters = () => {
             </MenuItem>
           </TextField>
 
-          <Grid container>
-            {colorTags ? (
-              colorTags.map((colorTag) => (
-                <Grid item xs={4}>
-                  <FormControlLabel
-                    control={<Checkbox size="small" />}
-                    label={colorTag.label}
-                  />
+          <List sx={{ marginTop: "16px" }}>
+            <ListItemButton
+              onClick={() => {
+                setColorsOpen(!colorsOpen);
+              }}
+            >
+              <ListItemText primary="Colors" />
+              {colorsOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={colorsOpen} timeout="auto" unmountOnExit>
+              <Box pl={4}>
+                <Grid container>
+                  {colorTags ? (
+                    colorTags.map((colorTag) => (
+                      <Grid item xs={6}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              size="small"
+                              value={colorTag.label}
+                              checked={checkedFilters.includes(colorTag.label)}
+                              onChange={handleFilterCheck}
+                            />
+                          }
+                          label={colorTag.label}
+                        />
+                      </Grid>
+                    ))
+                  ) : (
+                    <Box />
+                  )}
                 </Grid>
-              ))
-            ) : (
-              <Box />
-            )}
-          </Grid>
+              </Box>
+            </Collapse>
 
-          <Grid container>
-            {shapeTags ? (
-              shapeTags.map((shapeTag) => (
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={<Checkbox size="small" />}
-                    label={shapeTag.label}
-                  />
+            <ListItemButton
+              onClick={() => {
+                setShapesOpen(!shapesOpen);
+              }}
+            >
+              <ListItemText primary="Shapes" />
+              {shapesOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={shapesOpen} timeout="auto" unmountOnExit>
+              <Box pl={4}>
+                <Grid container>
+                  {shapeTags ? (
+                    shapeTags.map((shapeTag) => (
+                      <Grid item xs={6}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              size="small"
+                              value={shapeTag.label}
+                              checked={checkedFilters.includes(shapeTag.label)}
+                              onChange={handleFilterCheck}
+                            />
+                          }
+                          label={shapeTag.label}
+                        />
+                      </Grid>
+                    ))
+                  ) : (
+                    <Box />
+                  )}
                 </Grid>
-              ))
-            ) : (
-              <Box />
-            )}
-          </Grid>
+              </Box>
+            </Collapse>
 
-          <Grid container>
-            {objectTags ? (
-              objectTags.map((objectTag) => (
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={<Checkbox size="small" />}
-                    label={objectTag.label}
-                  />
+            <ListItemButton
+              onClick={() => {
+                setObjectsOpen(!objectsOpen);
+              }}
+            >
+              <ListItemText primary="Objects" />
+              {objectsOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={objectsOpen} timeout="auto" unmountOnExit>
+              <Box pl={4}>
+                <Grid container>
+                  {objectTags ? (
+                    objectTags.map((objectTag) => (
+                      <Grid item xs={6}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              size="small"
+                              value={objectTag.label}
+                              checked={checkedFilters.includes(objectTag.label)}
+                              onChange={handleFilterCheck}
+                            />
+                          }
+                          label={objectTag.label}
+                        />
+                      </Grid>
+                    ))
+                  ) : (
+                    <Box />
+                  )}
                 </Grid>
-              ))
-            ) : (
-              <Box />
-            )}
-          </Grid>
+              </Box>
+            </Collapse>
+          </List>
+
+          <Button type="submit" variant="outlined">Apply</Button>
         </FormGroup>
       </Stack>
     </Box>

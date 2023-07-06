@@ -8,7 +8,8 @@ class CollectionContextProvider extends Component {
   state = {
     bottlecapObj: null,
     tagObj: null,
-    drinkCategoryArr: ["Soft Drink", "Hard Drink"]
+    drinkCategoryArr: ["Soft Drink", "Hard Drink"],
+    currFilters: []
   };
 
   getAllTags = async () => {
@@ -38,6 +39,7 @@ class CollectionContextProvider extends Component {
           bottlecapObj: this.state.bottlecapObj,
           tagObj: this.state.tagObj,
           drinkCategoryArr: this.state.drinkCategoryArr,
+          currFilters: this.state.currFilters,
           getAllTags: this.getAllTags,
           getAllBottlecaps: this.getAllBottlecaps,
           searchBottlecaps: this.searchBottlecaps,
