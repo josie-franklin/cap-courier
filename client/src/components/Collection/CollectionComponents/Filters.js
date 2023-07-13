@@ -29,6 +29,12 @@ const ApplyButton = styled(Button)(() => ({
   marginBottom: "16px",
   color: "var(--primary)",
   borderColor: "rgba(0, 0, 0, 0.23)",
+  // width: "200px",
+}));
+
+const CollapseButton = styled(ListItemButton)(() => ({
+  borderTop: "1px solid rgba(0, 0, 0, 0.23)",
+  // borderBottom: "1px solid rgba(0, 0, 0, 0.23)",
 }));
 
 const Filters = () => {
@@ -43,7 +49,7 @@ const Filters = () => {
   const [shapesOpen, setShapesOpen] = useState(false);
   const [objectsOpen, setObjectsOpen] = useState(false);
 
-  const [selectedCategory, setSelectedCatergory] = useState([]);
+  const [selectedCategory, setSelectedCatergory] = useState();
   const [checkedFilters, setCheckedFilters] = useState([]);
 
   const handleCategorySelect = (e) => {
@@ -67,6 +73,7 @@ const Filters = () => {
   };
 
   const applyFilters = () => {
+    console.log(checkedFilters, selectedCategory);
     if (!checkedFilters.length && !selectedCategory) {
       setCurrFilterInfo(null);
     } else {
@@ -77,7 +84,6 @@ const Filters = () => {
       if (selectedCategory) {
         filterInfo.category = selectedCategory;
       }
-      // console.log(filterInfo);
       setCurrFilterInfo(filterInfo);
     }
   };
@@ -108,9 +114,8 @@ const Filters = () => {
   return (
     <Box
       sx={{
-        marginTop: "20px",
-        paddingRight: "20px",
-        borderRight: "var(--thin-border)",
+        paddingRight: { xs: "0", md: "20px" },
+        borderRight: { xs: "none", md: "var(--thin-border)" },
       }}
     >
       <Stack>
@@ -145,14 +150,14 @@ const Filters = () => {
           </TextField>
 
           <List sx={{ marginTop: "16px" }}>
-            <ListItemButton
+            <CollapseButton
               onClick={() => {
                 setColorsOpen(!colorsOpen);
               }}
             >
               <ListItemText primary="Colors" />
               {colorsOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+            </CollapseButton>
             <Collapse in={colorsOpen} timeout="auto" unmountOnExit>
               <Box pl={4}>
                 <Grid container>
@@ -179,14 +184,14 @@ const Filters = () => {
               </Box>
             </Collapse>
 
-            <ListItemButton
+            <CollapseButton
               onClick={() => {
                 setShapesOpen(!shapesOpen);
               }}
             >
               <ListItemText primary="Shapes" />
               {shapesOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+            </CollapseButton>
             <Collapse in={shapesOpen} timeout="auto" unmountOnExit>
               <Box pl={4}>
                 <Grid container>
@@ -213,14 +218,14 @@ const Filters = () => {
               </Box>
             </Collapse>
 
-            <ListItemButton
+            <CollapseButton
               onClick={() => {
                 setObjectsOpen(!objectsOpen);
               }}
             >
               <ListItemText primary="Objects" />
               {objectsOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+            </CollapseButton>
             <Collapse in={objectsOpen} timeout="auto" unmountOnExit>
               <Box pl={4}>
                 <Grid container>

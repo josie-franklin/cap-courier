@@ -6,14 +6,20 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import bottlecapImage from "../../images/bottlecap.png";
 
-const MainSection = styled(Box)(() => ({
+const MainSection = styled(Box)(({ theme }) => ({
   padding: "20px 0 20px",
-  marginRight: "20px"
+  marginRight: "20px",
+  [theme.breakpoints.down("md")]: {
+    marginRight: "0",
+  },
 }));
 
-const SideSection = styled(Box)(() => ({
+const SideSection = styled(Box)(({ theme }) => ({
   margin: "20px 20px 0",
   paddingBottom: "20px",
+  [theme.breakpoints.down("md")]: {
+    margin: "20px 0 0 0",
+  },
 }));
 
 const ImageContainer = styled(Box)(() => ({
@@ -22,12 +28,23 @@ const ImageContainer = styled(Box)(() => ({
 
 const ArticleTitle = styled(Typography)(() => ({
   fontFamily: "cheltenham",
-  fontSize: "1.4rem"
+  fontSize: "1.4rem",
 }));
 
 const ArticleContent = styled(Typography)(() => ({
   fontFamily: "imperial",
-  marginTop: "16px"
+  marginTop: "16px",
+}));
+
+const Divider = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    display: "block",
+  },
+  display: "none",
+  width: "100%",
+  padding: "0.25rem",
+  borderBottom: "var(--thin-border)",
+  borderTop: "var(--thick-border)",
 }));
 
 const HomePage = () => {
@@ -36,7 +53,10 @@ const HomePage = () => {
       <Grid container>
         <Grid item xs={12} md={9}>
           <Stack>
-            <MainSection component="section" sx={{borderBottom: "var(--thick-border)"}}>
+            <MainSection
+              component="section"
+              sx={{ borderBottom: "var(--thick-border)" }}
+            >
               <Grid container>
                 <Grid item xs={3}>
                   <ImageContainer>
@@ -58,7 +78,7 @@ const HomePage = () => {
                 </Grid>
               </Grid>
             </MainSection>
-            <MainSection>
+            <MainSection component="section">
               <Grid container>
                 <Grid item xs={9}>
                   <ArticleTitle>Recent Trade</ArticleTitle>
@@ -82,16 +102,22 @@ const HomePage = () => {
             </MainSection>
           </Stack>
         </Grid>
-        <Grid item xs={12} md={3} sx={{borderLeft: "var(--thin-border)"}}>
+        <Divider />
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{ borderLeft: { xs: "none", md: "var(--thin-border)" } }}
+        >
           <Stack>
-            <SideSection sx={{borderBottom: "var(--thin-border)"}}>
+            <SideSection sx={{ borderBottom: "var(--thin-border)" }}>
               <ArticleTitle>Hunting For:</ArticleTitle>
               <ArticleContent>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </ArticleContent>
             </SideSection>
-            <SideSection sx={{borderBottom: "var(--thin-border)"}}>
+            <SideSection sx={{ borderBottom: "var(--thin-border)" }}>
               <ArticleTitle>Resources</ArticleTitle>
               <ArticleContent>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
