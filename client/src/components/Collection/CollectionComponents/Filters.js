@@ -25,8 +25,15 @@ const ArticleTitle = styled(Typography)(() => ({
   marginTop: "20px",
 }));
 
+const ApplyButton = styled(Button)(() => ({
+  marginBottom: "16px",
+  color: "var(--primary)",
+  borderColor: "rgba(0, 0, 0, 0.23)",
+}));
+
 const Filters = () => {
-  const { drinkCategoryArr, tagObj } = useContext(CollectionContext);
+  const { drinkCategoryArr, tagObj, setCurrFilterInfo } =
+    useContext(CollectionContext);
 
   const [colorTags, setColorTags] = useState(null);
   const [shapeTags, setShapeTags] = useState(null);
@@ -36,7 +43,16 @@ const Filters = () => {
   const [shapesOpen, setShapesOpen] = useState(false);
   const [objectsOpen, setObjectsOpen] = useState(false);
 
+  const [selectedCategory, setSelectedCatergory] = useState([]);
   const [checkedFilters, setCheckedFilters] = useState([]);
+
+  const handleCategorySelect = (e) => {
+    if (e.target.value === "All") {
+      setSelectedCatergory(null);
+    } else {
+      setSelectedCatergory(e.target.value);
+    }
+  };
 
   const handleFilterCheck = (e) => {
     const isChecked = e.target.checked;
@@ -47,6 +63,22 @@ const Filters = () => {
       setCheckedFilters([...filtersArr, filter]);
     } else {
       setCheckedFilters(filtersArr.filter((f) => f != filter));
+    }
+  };
+
+  const applyFilters = () => {
+    if (!checkedFilters.length && !selectedCategory) {
+      setCurrFilterInfo(null);
+    } else {
+      const filterInfo = {};
+      if (checkedFilters.length) {
+        filterInfo.filter = checkedFilters;
+      }
+      if (selectedCategory) {
+        filterInfo.category = selectedCategory;
+      }
+      // console.log(filterInfo);
+      setCurrFilterInfo(filterInfo);
     }
   };
 
@@ -85,6 +117,10 @@ const Filters = () => {
         <ArticleTitle>Filters</ArticleTitle>
 
         <FormGroup>
+          <ApplyButton type="submit" variant="outlined" onClick={applyFilters}>
+            Apply
+          </ApplyButton>
+
           <FormControlLabel
             sx={{ marginBottom: "16px" }}
             control={<Checkbox />}
@@ -96,6 +132,7 @@ const Filters = () => {
             label="Beverage Type"
             defaultValue="All"
             sx={{ marginTop: "9px" }}
+            onChange={handleCategorySelect}
           >
             <MenuItem key="All" value="All">
               All
@@ -105,18 +142,6 @@ const Filters = () => {
                 {category}
               </MenuItem>
             ))}
-          </TextField>
-
-          <TextField select label="" defaultValue="1" sx={{ marginTop: "9px" }}>
-            <MenuItem key="1" value="1">
-              ---
-            </MenuItem>
-          </TextField>
-
-          <TextField select label="" defaultValue="1" sx={{ marginTop: "9px" }}>
-            <MenuItem key="1" value="1">
-              ---
-            </MenuItem>
           </TextField>
 
           <List sx={{ marginTop: "16px" }}>
@@ -133,7 +158,7 @@ const Filters = () => {
                 <Grid container>
                   {colorTags ? (
                     colorTags.map((colorTag) => (
-                      <Grid item xs={6}>
+                      <Grid item key={colorTag.label} xs={6}>
                         <FormControlLabel
                           control={
                             <Checkbox
@@ -167,7 +192,7 @@ const Filters = () => {
                 <Grid container>
                   {shapeTags ? (
                     shapeTags.map((shapeTag) => (
-                      <Grid item xs={6}>
+                      <Grid item xs={6} key={shapeTag.label}>
                         <FormControlLabel
                           control={
                             <Checkbox
@@ -201,7 +226,7 @@ const Filters = () => {
                 <Grid container>
                   {objectTags ? (
                     objectTags.map((objectTag) => (
-                      <Grid item xs={6}>
+                      <Grid item xs={6} key={objectTag.label}>
                         <FormControlLabel
                           control={
                             <Checkbox
@@ -223,7 +248,9 @@ const Filters = () => {
             </Collapse>
           </List>
 
-          <Button type="submit" variant="outlined">Apply</Button>
+          <ApplyButton type="submit" variant="outlined" onClick={applyFilters}>
+            Apply
+          </ApplyButton>
         </FormGroup>
       </Stack>
     </Box>

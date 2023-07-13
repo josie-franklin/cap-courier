@@ -6,10 +6,11 @@ export const CollectionContext = createContext();
 
 class CollectionContextProvider extends Component {
   state = {
-    bottlecapObj: null,
+    bottlecapObj: [],
     tagObj: null,
     drinkCategoryArr: ["Soft Drink", "Hard Drink"],
-    currFilters: []
+    currFilterInfo: null,
+    currInput: null
   };
 
   getAllTags = async () => {
@@ -25,10 +26,17 @@ class CollectionContextProvider extends Component {
     });
   };
 
+  setCurrFilterInfo = (currFilterInfo) => {
+    this.setState({ currFilterInfo });
+  };
+
+  setCurrInput = (currInput) => {
+    console.log(currInput)
+    this.setState({ currInput });
+  };
+
   searchBottlecaps = async (data) => {
-    //data = {search: "", filter: [""]} || {search: ""} || {filter: [""]}
     let bottlecaps = await bottlecapApi.getBottlecapsBySearchAndFilter(data);
-    // console.log(bottlecaps);
     this.setState({ bottlecapObj: bottlecaps });
   };
 
@@ -39,9 +47,12 @@ class CollectionContextProvider extends Component {
           bottlecapObj: this.state.bottlecapObj,
           tagObj: this.state.tagObj,
           drinkCategoryArr: this.state.drinkCategoryArr,
-          currFilters: this.state.currFilters,
+          currFilterInfo: this.state.currFilterInfo,
+          currInput: this.state.currInput,
           getAllTags: this.getAllTags,
           getAllBottlecaps: this.getAllBottlecaps,
+          setCurrFilterInfo: this.setCurrFilterInfo,
+          setCurrInput: this.setCurrInput,
           searchBottlecaps: this.searchBottlecaps,
         }}
       >

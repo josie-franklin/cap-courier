@@ -31,7 +31,6 @@ router.get("/query", async (req, res) => {
         sqlString +
         `(id = '${req.query.search}' ` +
         `OR source LIKE '%${req.query.search}%' ` +
-        `OR category LIKE '%${req.query.search}%' ` +
         `OR location LIKE '%${req.query.search}%')`;
     }
     if (req.query.filter) {
@@ -45,6 +44,13 @@ router.get("/query", async (req, res) => {
           sqlString = sqlString + ` AND tags LIKE '%${filter}%'`;
         }
       });
+    }
+    if (req.query.category) {
+      console.log(req.query.category);
+      if (req.query.search || req.query.filter) {
+        sqlString = sqlString + " AND ";
+      }
+      sqlString = sqlString + `category = '${req.query.category}'`;
     }
     console.log(sqlString);
 

@@ -21,7 +21,7 @@ const SearchBar = styled(Box)(() => ({
 }));
 
 const CollectionPage = () => {
-  const { drinkCategoryArr, getAllTags, getAllBottlecaps, searchBottlecaps } =
+  const { getAllTags, setCurrInput } =
     useContext(CollectionContext);
 
   const [searchInput, setSearchInput] = useState();
@@ -32,21 +32,12 @@ const CollectionPage = () => {
   };
 
   const handleSubmit = () => {
-    console.log(searchInput);
     const sendInput = searchInput.trim();
-    if (!sendInput) {
-      getAllBottlecaps();
-    } else {
-      const sendData = {
-        search: sendInput,
-      };
-      searchBottlecaps(sendData);
-    }
+    setCurrInput(sendInput)
   };
 
   useEffect(() => {
     getAllTags();
-    getAllBottlecaps();
   }, []);
 
   return (

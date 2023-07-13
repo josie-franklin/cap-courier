@@ -12,23 +12,32 @@ export async function getAllBottlecaps() {
 }
 
 export async function getBottlecapsBySearchAndFilter(data) {
+  // console.log(data);
   try {
     //Build the query string
     let url = "/api/bottlecaps/query?";
     if (data.search) {
       url = url + `search=${data.search}`;
     }
-    if (data.filter) {
-      if (data.search) {
-        url = url + "&";
-      }
-      data.filter.forEach((filter, index) => {
-        if (index === 0) {
-          url = url + `filter[]=${filter}`;
-        } else {
-          url = url + `&filter[]=${filter}`;
+    if (data.filterInfo) {
+      if (data.filterInfo.filter) {
+        if (data.search) {
+          url = url + "&";
         }
-      });
+        data.filterInfo.filter.forEach((filter, index) => {
+          if (index === 0) {
+            url = url + `filter[]=${filter}`;
+          } else {
+            url = url + `&filter[]=${filter}`;
+          }
+        });
+      }
+      if (data.filterInfo.category) {
+        if (data.search || data.filterInfo.filter) {
+          url = url + "&";
+        }
+        url = url + `category=${data.filterInfo.category}`;
+      }
     }
     // console.log(url);
 

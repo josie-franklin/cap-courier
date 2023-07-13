@@ -4,19 +4,19 @@ const { Bottlecap } = require("../models");
 const bottlecapData = [
   {
     source: "Coca-Cola",
-    category: "Soda",
+    category: "Soft Drink",
     location: "Cary, NC",
     tags: "Circle, Red"
   },
   {
     source: "Ale-8-One",
-    category: "Soda",
+    category: "Soft Drink",
     location: "Lexington, KY",
     tags: "Circle, White"
   },
   {
     source: "Corona",
-    category: "Alcohol",
+    category: "Hard Drink",
     location: "Cary, NC",
     tags: "Sun"
   },

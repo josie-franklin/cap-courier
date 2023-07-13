@@ -60,7 +60,13 @@ const DialogPaperBG = styled(Paper)(() => ({
 }));
 
 const SearchResults = () => {
-  const { bottlecapObj } = useContext(CollectionContext);
+  const {
+    bottlecapObj,
+    currFilterInfo,
+    currInput,
+    getAllBottlecaps,
+    searchBottlecaps,
+  } = useContext(CollectionContext);
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [currentCap, setCurrentCap] = useState(false);
@@ -70,9 +76,21 @@ const SearchResults = () => {
     setDialogOpen(true);
   };
 
+  useEffect(() => {
+    if (!currFilterInfo && !currInput) {
+      getAllBottlecaps();
+    } else {
+      const sendData = {
+        search: currInput,
+        filterInfo: currFilterInfo,
+      };
+      searchBottlecaps(sendData);
+    }
+  }, [currFilterInfo, currInput]);
+
   useEffect(() => {}, [bottlecapObj]);
 
-  const results = bottlecapObj ? (
+  const results = bottlecapObj.length ? (
     <Grid container>
       {bottlecapObj.map((bottlecap, i) => (
         <Grid key={i} item xs={6} sm={4} md={3} lg={2}>
@@ -88,7 +106,9 @@ const SearchResults = () => {
       ))}
     </Grid>
   ) : (
-    <Box>There's nothing here.</Box>
+    <Box sx={{padding: "20px"}}>
+      <Typography>No bottlecaps match your search.</Typography>
+    </Box>
   );
 
   let contents = !bottlecapObj ? <p>Loading...</p> : results;
