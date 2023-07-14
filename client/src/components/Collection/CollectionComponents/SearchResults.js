@@ -18,6 +18,11 @@ import bottlecapImage from "../../../images/bottlecap.png";
 import rippedPaper from "../../../images/rippedpapertextured.PNG";
 import paperclip from "../../../images/paperclip2.png";
 
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+import { saturation, contrast, brightness } from "@cloudinary/url-gen/actions/adjust";
+
 const ResultImageContainer = styled(Box)(() => ({
   width: "100%",
   padding: "20px",
@@ -71,6 +76,22 @@ const SearchResults = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [currentCap, setCurrentCap] = useState(false);
 
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "hdvrmdbma",
+    },
+  });
+
+  const getImage = (image) => {
+    const myImage = cld.image(image);
+    myImage.resize(fill().width(250).height(250));
+    myImage
+      //.adjust(saturation().level(-1))
+      .adjust(contrast().level(-40))
+      .adjust(brightness().level(20));
+    return myImage;
+  };
+
   const openDialog = (bottlecap) => {
     setCurrentCap(bottlecap);
     setDialogOpen(true);
@@ -99,14 +120,17 @@ const SearchResults = () => {
               openDialog(bottlecap);
             }}
           >
-            <img src={bottlecapImage} style={{ width: "100%" }} />
+            <AdvancedImage
+              cldImg={getImage(bottlecap.image)}
+              style={{ width: "100%" }}
+            />
             <ImageLabel>{bottlecap.source.toUpperCase()}</ImageLabel>
           </ResultImageContainer>
         </Grid>
       ))}
     </Grid>
   ) : (
-    <Box sx={{padding: "20px"}}>
+    <Box sx={{ padding: "20px" }}>
       <Typography>No bottlecaps match your search.</Typography>
     </Box>
   );
@@ -140,7 +164,10 @@ const SearchResults = () => {
           <Grid container>
             <Grid item xs={6}>
               <DialogImageContainer>
-                <img src={bottlecapImage} style={{ width: "100%" }} />
+                <AdvancedImage
+                  cldImg={getImage(currentCap.image)}
+                  style={{ width: "100%" }}
+                />
                 <ImageLabel>{currentCap.location}</ImageLabel>
               </DialogImageContainer>
             </Grid>
