@@ -9,9 +9,6 @@ const Strip = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   borderTop: "var(--thin-border)",
   display: "flex",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
 }));
 
 const StyledLink = styled(Box)(() => ({
@@ -29,13 +26,10 @@ const StyledLink = styled(Box)(() => ({
 const Footer = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
-  useEffect(() => {
-    console.log(isAuthenticated);
-    console.log(user);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <Box sx={{ padding: "0 40px 20px" }}>
+    <Box sx={{ paddingBottom: "20px" }}>
       <Strip>
         {!isAuthenticated && (
           <StyledLink onClick={loginWithRedirect}>

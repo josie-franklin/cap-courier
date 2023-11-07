@@ -11,27 +11,46 @@ Bottlecap.init(
       allowNull: false,
       autoIncrement: true
     },
-    source: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     category: {
       type: DataTypes.STRING,
       allowNull: false,
-
+    },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    flavor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     location: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    text: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    note: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     tags: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    image: {
-      type: DataTypes.STRING,
+    count: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize,

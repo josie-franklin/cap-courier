@@ -10,12 +10,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const HeaderContainer = styled(Box)(() => ({
-  margin: "0 40px",
   position: "static",
 }));
 
 const TitleContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
+    margin: "0 20px",
     display: "flex",
   },
   justifyContent: "space-between",
@@ -29,7 +29,7 @@ const Title = styled(Typography)(({ theme }) => ({
     fontSize: "4rem",
   },
   [theme.breakpoints.down("sm")]: {
-    fontSize: "2.5rem",
+    fontSize: "1.7rem",
   },
 }));
 
@@ -74,6 +74,7 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
     display: "block",
   },
   display: "none",
+  paddingLeft: "0",
 }));
 
 const Header = () => {
@@ -82,8 +83,6 @@ const Header = () => {
   return (
     <HeaderContainer>
       <TitleContainer>
-        <Title variant="h1">The Cap Courier</Title>
-
         <MenuButton
           onClick={() => {
             setMenuOpen(!menuOpen);
@@ -91,6 +90,8 @@ const Header = () => {
         >
           <MenuIcon fontSize="large" sx={{ marginTop: "7px" }} />
         </MenuButton>
+
+        <Title variant="h1">The Cap Courier</Title>
       </TitleContainer>
 
       <Nav component="nav">
@@ -128,7 +129,7 @@ const Header = () => {
       <Divider />
 
       <Drawer
-        anchor="right"
+        anchor="left"
         open={menuOpen}
         onClose={() => {
           setMenuOpen(!menuOpen);

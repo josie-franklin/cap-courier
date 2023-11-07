@@ -34,7 +34,6 @@ const ApplyButton = styled(Button)(() => ({
 
 const CollapseButton = styled(ListItemButton)(() => ({
   borderTop: "1px solid rgba(0, 0, 0, 0.23)",
-  // borderBottom: "1px solid rgba(0, 0, 0, 0.23)",
 }));
 
 const Filters = () => {

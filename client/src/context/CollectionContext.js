@@ -10,7 +10,7 @@ class CollectionContextProvider extends Component {
     tagObj: null,
     drinkCategoryArr: ["Soft Drink", "Hard Drink"],
     currFilterInfo: null,
-    currInput: null
+    currInput: null,
   };
 
   getAllTags = async () => {
@@ -31,11 +31,12 @@ class CollectionContextProvider extends Component {
   };
 
   setCurrInput = (currInput) => {
-    console.log(currInput)
+    console.log(currInput);
     this.setState({ currInput });
   };
 
   searchBottlecaps = async (data) => {
+    // this.setState({ bottlecapObj: [] });
     let bottlecaps = await bottlecapApi.getBottlecapsBySearchAndFilter(data);
     this.setState({ bottlecapObj: bottlecaps });
   };

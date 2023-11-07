@@ -13,11 +13,15 @@ import Box from "@mui/material/Box";
 import backgroundPaper from "./images/textured_paper.png";
 import "./App.css";
 
-const AppContainer = styled(Box)(() => ({
+const AppContainer = styled(Box)(({theme}) => ({
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
   backgroundImage: `url(${backgroundPaper})`,
+  padding: "0 40px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "0",
+  },
 }));
 
 const App = () => {

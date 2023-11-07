@@ -3,28 +3,44 @@ const { Bottlecap } = require("../models");
 
 const bottlecapData = [
   {
-    source: "Coca-Cola",
+    image: "bottlecaps/coca-cola_a5qmyf",
     category: "Soft Drink",
+    brand: "Coca-Cola",
+    flavor: "Original",
+    date: "7/16/23",
     location: "Cary, NC",
-    tags: "Circle, Red",
-    image: "bottlecaps/coca-cola_a5qmyf"
+    text: "Coca-Cola",
+    note: null,
+    tags: "White, Red",
+    count: 2,
   },
   {
-    source: "Ale-8-One",
+    image: "bottlecaps/ale-8-one_ucp3ax",
     category: "Soft Drink",
+    brand: "Ale-8-One",
+    flavor: "Original",
+    date: "7/16/23",
     location: "Lexington, KY",
-    tags: "Circle, White",
-    image: "bottlecaps/ale-8-one_ucp3ax"
+    text: "Ale 8 TWIST OFF",
+    note: null,
+    tags: "Silver, Red",
+    count: 1,
   },
   {
-    source: "Corona",
+    image: "bottlecaps/corona-extra_s4ztbo",
     category: "Hard Drink",
+    brand: "Corona Extra",
+    flavor: "Original",
+    date: "7/16/23",
     location: "Cary, NC",
-    tags: "Sun",
-    image: "bottlecaps/corona-extra_s4ztbo"
+    text: "Corona Extra",
+    note: "Oh, a little note!",
+    tags: "White, Blue, Crown",
+    count: 1,
   },
 ];
 
-const seedBottlecaps = () => Bottlecap.bulkCreate(bottlecapData, { individualHooks: true });
+const seedBottlecaps = () =>
+  Bottlecap.bulkCreate(bottlecapData, { individualHooks: true });
 
 module.exports = seedBottlecaps;

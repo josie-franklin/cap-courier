@@ -12,6 +12,9 @@ const MainSection = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     marginRight: "0",
   },
+  [theme.breakpoints.down("sm")]: {
+    padding: "20px"
+  },
 }));
 
 const SideSection = styled(Box)(({ theme }) => ({
@@ -19,6 +22,9 @@ const SideSection = styled(Box)(({ theme }) => ({
   paddingBottom: "20px",
   [theme.breakpoints.down("md")]: {
     margin: "20px 0 0 0",
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "0 20px 20px"
   },
 }));
 
@@ -49,7 +55,7 @@ const Divider = styled(Box)(({ theme }) => ({
 
 const HomePage = () => {
   return (
-    <Box component="main" sx={{ flexGrow: 1, margin: "24px 40px" }}>
+    <Box component="main" sx={{ flexGrow: 1, margin: "24px 0" }}>
       <Grid container>
         <Grid item xs={12} md={9}>
           <Stack>

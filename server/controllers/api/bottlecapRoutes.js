@@ -30,7 +30,8 @@ router.get("/query", async (req, res) => {
       sqlString =
         sqlString +
         `(id = '${req.query.search}' ` +
-        `OR source LIKE '%${req.query.search}%' ` +
+        `OR brand LIKE '%${req.query.search}%' ` +
+        `OR flavor LIKE '%${req.query.search}%' ` +
         `OR location LIKE '%${req.query.search}%')`;
     }
     if (req.query.filter) {

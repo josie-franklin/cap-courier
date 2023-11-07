@@ -179,6 +179,10 @@ const tagData = [
       category: "Object",
     },
     {
+      label: "Crown",
+      category: "Object",
+    },
+    {
       label: "Other object",
       category: "Object",
     },
