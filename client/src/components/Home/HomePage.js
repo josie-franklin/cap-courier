@@ -13,7 +13,7 @@ const MainSection = styled(Box)(({ theme }) => ({
     marginRight: "0",
   },
   [theme.breakpoints.down("sm")]: {
-    padding: "20px"
+    padding: "20px",
   },
 }));
 
@@ -24,12 +24,23 @@ const SideSection = styled(Box)(({ theme }) => ({
     margin: "20px 0 0 0",
   },
   [theme.breakpoints.down("sm")]: {
-    padding: "0 20px 20px"
+    padding: "0 20px 20px",
   },
 }));
 
-const ImageContainer = styled(Box)(() => ({
-  width: "100%",
+const ImageContainer = styled(Box)(({ theme }) => ({
+  width: "45%",
+  float: "left",
+  marginRight: "15px",
+  [theme.breakpoints.up("sm")]: {
+    width: "30%",
+  },
+  [theme.breakpoints.up("md")]: {
+    width: "25%",
+  },
+  [theme.breakpoints.up("xl")]: {
+    width: "20%",
+  },
 }));
 
 const ArticleTitle = styled(Typography)(() => ({
@@ -40,6 +51,7 @@ const ArticleTitle = styled(Typography)(() => ({
 const ArticleContent = styled(Typography)(() => ({
   fontFamily: "imperial",
   marginTop: "16px",
+  textAlign: "justify",
 }));
 
 const Divider = styled(Box)(({ theme }) => ({
@@ -63,48 +75,34 @@ const HomePage = () => {
               component="section"
               sx={{ borderBottom: "var(--thick-border)" }}
             >
-              <Grid container>
-                <Grid item xs={3}>
-                  <ImageContainer>
-                    <img src={bottlecapImage} style={{ width: "100%" }} />
-                  </ImageContainer>
-                </Grid>
-                <Grid item xs={9}>
-                  <ArticleTitle>Featured Cap</ArticleTitle>
-                  <ArticleContent>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                  </ArticleContent>
-                </Grid>
-              </Grid>
+              <ImageContainer>
+                <img src={bottlecapImage} style={{ width: "100%" }} />
+              </ImageContainer>
+              <ArticleTitle>Featured Cap</ArticleTitle>
+              <ArticleContent>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </ArticleContent>
             </MainSection>
             <MainSection component="section">
-              <Grid container>
-                <Grid item xs={9}>
-                  <ArticleTitle>Recent Trade</ArticleTitle>
-                  <ArticleContent>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                  </ArticleContent>
-                </Grid>
-                <Grid item xs={3}>
-                  <ImageContainer>
-                    <img src={bottlecapImage} style={{ width: "100%" }} />
-                  </ImageContainer>
-                </Grid>
-              </Grid>
+              <ImageContainer>
+                <img src={bottlecapImage} style={{ width: "100%" }} />
+              </ImageContainer>
+              <ArticleTitle>Recent Trade</ArticleTitle>
+              <ArticleContent>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </ArticleContent>
             </MainSection>
           </Stack>
         </Grid>
