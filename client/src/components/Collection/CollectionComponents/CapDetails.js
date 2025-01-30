@@ -1,18 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import rippedPaper from "../../../images/rippedpapertextured.PNG";
-import paperclip from "../../../images/paperclip2.png";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { fill } from "@cloudinary/url-gen/actions/resize";
@@ -22,28 +14,33 @@ import {
   brightness,
 } from "@cloudinary/url-gen/actions/adjust";
 
-const DialogImageContainer = styled(Box)(({ theme }) => ({
-  width: "100%",
-  paddingRight: "20px",
-  [theme.breakpoints.down("md")]: {
-    width: "50%",
-    // padding: "0 0 0 50px",
+const StyledContainer = styled(Box)(({ theme }) => ({
+  marginTop: "20px",
+  [theme.breakpoints.up("md")]: {
+    marginTop: "0",
+    minWidth: "450px",
   },
+}));
+
+const DialogImageContainer = styled(Box)(({ theme }) => ({
+  width: "30%",
+  float: "left",
+  marginRight: "20px",
+  [theme.breakpoints.up("sm")]: {
+    width: "30%",
+  },
+  [theme.breakpoints.up("md")]: {
+    width: "45%",
+  },
+  // [theme.breakpoints.up("xl")]: {
+  //   width: "20%",
+  // },
 }));
 
 const ImageLabel = styled(Typography)(() => ({
   fontFamily: "Georgia, serif",
   textAlign: "right",
   fontSize: ".8rem",
-}));
-
-const ArticleContainer = styled(Box)(({ theme }) => ({
-  borderLeft: "var(--thin-border)",
-  height: "100%",
-  [theme.breakpoints.down("md")]: {
-    borderLeft: "none",
-    // borderTop: "var(--thin-border)",
-  },
 }));
 
 const ArticleTitle = styled(Typography)(() => ({
@@ -63,6 +60,7 @@ const ArticleSubTitle = styled(Typography)(() => ({
 const ArticleContent = styled(Typography)(() => ({
   fontFamily: "imperial",
   fontSize: "0.9rem",
+  lineHeight: "2"
 }));
 
 const EditButton = styled(Button)(() => ({
@@ -76,7 +74,7 @@ const CapDetails = (props) => {
 
   const { currentCap } = props;
 
-  const [editMode, setEditMode] = useState(false);
+  // const [editMode, setEditMode] = useState(false);
 
   const cld = new Cloudinary({
     cloud: {
@@ -94,98 +92,78 @@ const CapDetails = (props) => {
     return capImg;
   };
 
-  const updateCap = () => {
-    console.log(currentCap);
-    setEditMode(false);
-  };
+  // const updateCap = () => {
+  //   setEditMode(false);
+  // };
 
   return (
-    <Grid container>
-      <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
-        <DialogImageContainer>
-          <AdvancedImage
-            cldImg={getImage(currentCap.image)}
-            style={{ width: "100%" }}
-          />
-          <ImageLabel>#{currentCap.id}</ImageLabel>
-        </DialogImageContainer>
-      </Grid>
-      <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
-        <ArticleContainer>
-          <Stack>
-            <ArticleTitle>{currentCap.brand}</ArticleTitle>
-            <ArticleSubTitle>
-              {currentCap ? currentCap.flavor.toUpperCase() : ""}
-            </ArticleSubTitle>
-          </Stack>
-          <Stack sx={{ marginTop: "16px", paddingLeft: "20px" }}>
-            <Stack direction="row">
-              <ArticleContent sx={{ width: "50%" }}>Category:</ArticleContent>
-              <ArticleContent>{currentCap.category}</ArticleContent>
-            </Stack>
-            <Stack direction="row">
-              <ArticleContent sx={{ width: "50%" }}>Location:</ArticleContent>
-              <ArticleContent>{currentCap.location}</ArticleContent>
-            </Stack>
-            <Stack direction="row">
-              <ArticleContent sx={{ width: "50%" }}>Date:</ArticleContent>
-              <ArticleContent>{currentCap.date}</ArticleContent>
-            </Stack>
-            {currentCap.text && (
-              <Stack direction="row">
-                <ArticleContent sx={{ width: "50%" }}>Text:</ArticleContent>
-                <ArticleContent>{currentCap.text}</ArticleContent>
-              </Stack>
-            )}
-            {currentCap.count > 1 && (
-              <Stack direction="row">
-                <ArticleContent sx={{ marginTop: "16px" }}>
-                  Available for trade
-                </ArticleContent>
-              </Stack>
-            )}
-            {currentCap.note && (
-              <ArticleContent sx={{ marginTop: "16px" }}>
-                {currentCap.note}
-              </ArticleContent>
-            )}
-          </Stack>
-        </ArticleContainer>
-      </Grid>
-      {isAuthenticated && (
-        <Grid item xs={12} order={{ xs: 3 }}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-            }}
-          >
-            {!editMode && (
-              <EditButton
-                sx={{ width: "100%" }}
-                onClick={() => {
-                  setEditMode(true);
-                }}
-                flavor="outlined"
-              >
-                Edit
-              </EditButton>
-            )}
+    <StyledContainer container>
+      <DialogImageContainer>
+        <AdvancedImage
+          cldImg={getImage(currentCap.image)}
+          style={{ width: "100%" }}
+        />
+        <ImageLabel>#{currentCap.id}</ImageLabel>
+      </DialogImageContainer>
 
-            {editMode && (
-              <EditButton
-                sx={{ width: "100%" }}
-                flavor="outlined"
-                onClick={() => {updateCap()}}
-              >
-                Save
-              </EditButton>
-            )}
-          </Box>
-        </Grid>
+      <ArticleTitle>{currentCap.brand}</ArticleTitle>
+      <ArticleSubTitle>
+        {currentCap ? currentCap.flavor.toUpperCase() : ""}
+      </ArticleSubTitle>
+
+      <Stack direction="row" sx={{ marginTop: "20px" }}>
+        <ArticleContent sx={{ width: "50%" }}>Category:</ArticleContent>
+        <ArticleContent>{currentCap.category}</ArticleContent>
+      </Stack>
+      <Stack direction="row">
+        <ArticleContent sx={{ width: "50%" }}>Location:</ArticleContent>
+        <ArticleContent>{currentCap.location}</ArticleContent>
+      </Stack>
+      <Stack direction="row">
+        <ArticleContent sx={{ width: "50%" }}>Date:</ArticleContent>
+        <ArticleContent>{currentCap.date}</ArticleContent>
+      </Stack>
+      {currentCap.text && (
+        <Stack direction="row">
+          <ArticleContent sx={{ width: "50%" }}>Text:</ArticleContent>
+          <ArticleContent>{currentCap.text}</ArticleContent>
+        </Stack>
       )}
-    </Grid>
+      {currentCap.count > 1 && (
+        <Stack direction="row">
+          <ArticleContent sx={{ marginTop: "16px" }}>
+            Available for trade
+          </ArticleContent>
+        </Stack>
+      )}
+      {currentCap.note && (
+        <ArticleContent sx={{ marginTop: "16px" }}>
+          {currentCap.note}
+        </ArticleContent>
+      )}
+
+      {isAuthenticated && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          {/* {!editMode && ( */}
+          <EditButton
+            sx={{ width: "100%" }}
+            // onClick={() => {
+            //   setEditMode(true);
+            // }}
+            variant="outlined"
+          >
+            Edit
+          </EditButton>
+          {/* )} */}
+        </Box>
+      )}
+    </StyledContainer>
   );
 };
 

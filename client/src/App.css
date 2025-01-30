@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
   color: var(--primary);
+  /* line-height: 1.5; */
 }
 
 @font-face {

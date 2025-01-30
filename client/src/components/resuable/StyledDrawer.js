@@ -5,6 +5,8 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import rippedPaper from "../../images/rippedpapertextured_fordrawer.PNG";
 import backgroundPaper from "../../images/textured_paper.png";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const DrawerProps = {
   sx: {
@@ -17,12 +19,6 @@ const DrawerProps = {
     // },
   },
 };
-
-const DrawerCloseButton = styled(Button)(() => ({
-  marginTop: "17px",
-  position: "absolute",
-  right: "5%",
-}));
 
 const StyledDrawer = (props) => {
   const { drawerOpen, setDrawerOpen, content } = props;
@@ -38,13 +34,17 @@ const StyledDrawer = (props) => {
       }}
     >
       <Box sx={{ padding: "20px", height: "85vh" }}>
-        <DrawerCloseButton
+        <IconButton
           onClick={() => {
             setDrawerOpen(false);
           }}
+          sx={{
+            position: "absolute",
+            right: "5%",
+          }}
         >
-          Close
-        </DrawerCloseButton>
+          <CloseIcon />
+        </IconButton>
         {content}
       </Box>
     </Drawer>

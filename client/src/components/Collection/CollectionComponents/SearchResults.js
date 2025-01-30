@@ -76,7 +76,7 @@ const SearchResults = () => {
   }, [currFilterInfo, currInput]);
 
   useEffect(() => {
-    console.log(bottlecapObj);
+    // console.log(bottlecapObj);
   }, [bottlecapObj]);
 
   const results = bottlecapObj.length ? (

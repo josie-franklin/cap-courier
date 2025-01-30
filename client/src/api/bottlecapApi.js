@@ -38,6 +38,12 @@ export async function getBottlecapsBySearchAndFilter(data) {
         }
         url = url + `category=${data.filterInfo.category}`;
       }
+      if (data.filterInfo.forTrade) {
+        if (data.search || data.filterInfo.filter) {
+          url = url + "&";
+        }
+        url = url + `forTrade=${data.filterInfo.forTrade}`;
+      }
     }
     // console.log(url);
 

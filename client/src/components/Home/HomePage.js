@@ -52,6 +52,7 @@ const ArticleContent = styled(Typography)(() => ({
   fontFamily: "imperial",
   marginTop: "16px",
   textAlign: "justify",
+  lineHeight: "2"
 }));
 
 const Divider = styled(Box)(({ theme }) => ({

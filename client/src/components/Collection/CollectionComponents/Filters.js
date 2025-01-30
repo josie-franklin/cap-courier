@@ -36,7 +36,7 @@ const CollapseButton = styled(ListItemButton)(() => ({
   borderTop: "1px solid rgba(0, 0, 0, 0.23)",
 }));
 
-const Filters = () => {
+const Filters = (props) => {
   const { drinkCategoryArr, tagObj, setCurrFilterInfo } =
     useContext(CollectionContext);
 
@@ -49,6 +49,7 @@ const Filters = () => {
   const [objectsOpen, setObjectsOpen] = useState(false);
 
   const [selectedCategory, setSelectedCatergory] = useState();
+  const [forTradeFilter, setForTradeFilter] = useState();
   const [checkedFilters, setCheckedFilters] = useState([]);
 
   const handleCategorySelect = (e) => {
@@ -67,13 +68,12 @@ const Filters = () => {
     if (isChecked) {
       setCheckedFilters([...filtersArr, filter]);
     } else {
-      setCheckedFilters(filtersArr.filter((f) => f != filter));
+      setCheckedFilters(filtersArr.filter((f) => f !== filter));
     }
   };
 
   const applyFilters = () => {
-    console.log(checkedFilters, selectedCategory);
-    if (!checkedFilters.length && !selectedCategory) {
+    if (!checkedFilters.length && !selectedCategory && !forTradeFilter) {
       setCurrFilterInfo(null);
     } else {
       const filterInfo = {};
@@ -83,7 +83,11 @@ const Filters = () => {
       if (selectedCategory) {
         filterInfo.category = selectedCategory;
       }
+      if (forTradeFilter) {
+        filterInfo.forTrade = forTradeFilter;
+      }
       setCurrFilterInfo(filterInfo);
+      if (props.setFiltersOpen) props.setFiltersOpen(false);
     }
   };
 
@@ -127,7 +131,12 @@ const Filters = () => {
 
           <FormControlLabel
             sx={{ marginBottom: "16px" }}
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                value={forTradeFilter}
+                onChange={() => setForTradeFilter(!forTradeFilter)}
+              />
+            }
             label="For Trade Only"
           />
 

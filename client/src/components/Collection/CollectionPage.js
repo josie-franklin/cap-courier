@@ -88,7 +88,7 @@ const CollectionPage = () => {
       <StyledDrawer
         drawerOpen={filtersOpen}
         setDrawerOpen={setFiltersOpen}
-        content={<Filters />}
+        content={<Filters setFiltersOpen={setFiltersOpen}/>}
       />
 
       <StyledDrawer

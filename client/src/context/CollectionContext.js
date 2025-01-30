@@ -31,7 +31,6 @@ class CollectionContextProvider extends Component {
   };
 
   setCurrInput = (currInput) => {
-    console.log(currInput);
     this.setState({ currInput });
   };
 

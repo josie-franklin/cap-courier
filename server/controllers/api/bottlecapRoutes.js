@@ -23,6 +23,7 @@ router.get("/", (req, res) => {
 
 //Get caps from search input. Hit when user inputs and clicks search.
 router.get("/query", async (req, res) => {
+  console.log(req.query)
   try {
     //Set up raw SQL string
     let sqlString = "SELECT * from bottlecap WHERE ";
@@ -52,6 +53,13 @@ router.get("/query", async (req, res) => {
         sqlString = sqlString + " AND ";
       }
       sqlString = sqlString + `category = '${req.query.category}'`;
+    }
+    if (req.query.forTrade) {
+      console.log(req.query.forTrade);
+      if (req.query.search || req.query.filter || req.query.category) {
+        sqlString = sqlString + " AND ";
+      }
+      sqlString = sqlString + "count > 1";
     }
     console.log(sqlString);
 
