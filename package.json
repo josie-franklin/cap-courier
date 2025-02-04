@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/josie-franklin/cap-courier/issues"
   },
-  "homepage": "https://github.com/josie-franklin/cap-courier#readme",
+  "homepage": "/",
   "devDependencies": {
     "concurrently": "^8.2.0"
   }
