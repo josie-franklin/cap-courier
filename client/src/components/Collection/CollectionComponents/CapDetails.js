@@ -111,20 +111,20 @@ const CapDetails = (props) => {
         {currentCap ? currentCap.flavor.toUpperCase() : ""}
       </ArticleSubTitle>
 
-      <Stack direction="row" sx={{ marginTop: "20px" }}>
+      <Stack direction="row" sx={{ marginTop: "20px", justifyContent: "space-between" }}>
         <ArticleContent sx={{ width: "50%" }}>Category:</ArticleContent>
         <ArticleContent>{currentCap.category}</ArticleContent>
       </Stack>
-      <Stack direction="row">
+      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <ArticleContent sx={{ width: "50%" }}>Location:</ArticleContent>
         <ArticleContent>{currentCap.location}</ArticleContent>
       </Stack>
-      <Stack direction="row">
+      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <ArticleContent sx={{ width: "50%" }}>Date:</ArticleContent>
         <ArticleContent>{currentCap.date}</ArticleContent>
       </Stack>
       {currentCap.text && (
-        <Stack direction="row">
+        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
           <ArticleContent sx={{ width: "50%" }}>Text:</ArticleContent>
           <ArticleContent>{currentCap.text}</ArticleContent>
         </Stack>
