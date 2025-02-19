@@ -7,13 +7,14 @@ import HomePage from "./components/Home/HomePage";
 import CollectionPage from "./components/Collection/CollectionPage";
 import AboutMePage from "./components/AboutMe/AboutMePage";
 import AboutWebsitePage from "./components/AboutWebsite/AboutWebsitePage";
+import CapEditPage from "./components/CapEdit/CapEditPage";
 import Footer from "./components/Footer";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import backgroundPaper from "./images/textured_paper.png";
 import "./App.css";
 
-const AppContainer = styled(Box)(({theme}) => ({
+const AppContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   minHeight: "100vh",
@@ -51,14 +52,20 @@ const App = () => {
             <Route
               exact
               key="AboutMe"
-              path="/aboutme"
+              path="/about-me"
               element={<AboutMePage />}
             />
             <Route
               exact
               key="AboutWebsite"
-              path="/aboutwebsite"
+              path="/about-website"
               element={<AboutWebsitePage />}
+            />
+            <Route
+              exact
+              key="CapEdit"
+              path="/bottlecap-edit/:capId?"
+              element={<CapEditPage />}
             />
           </Routes>
           <Footer />

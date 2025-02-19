@@ -111,7 +111,7 @@ const Header = () => {
           </Typography>
         </LinkContainer>
         <LinkContainer>
-          <StyledLink key="About Me" component={ReactLink} to="aboutme">
+          <StyledLink key="About Me" component={ReactLink} to="about-me">
             ABOUT ME
           </StyledLink>
         </LinkContainer>
@@ -119,7 +119,7 @@ const Header = () => {
           <StyledLink
             key="About Website"
             component={ReactLink}
-            to="aboutwebsite"
+            to="about-website"
           >
             ABOUT WEBSITE
           </StyledLink>

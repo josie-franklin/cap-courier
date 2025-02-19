@@ -74,8 +74,6 @@ const CapDetails = (props) => {
 
   const { currentCap } = props;
 
-  // const [editMode, setEditMode] = useState(false);
-
   const cld = new Cloudinary({
     cloud: {
       cloudName: "hdvrmdbma",
@@ -91,10 +89,6 @@ const CapDetails = (props) => {
       .adjust(brightness().level(20));
     return capImg;
   };
-
-  // const updateCap = () => {
-  //   setEditMode(false);
-  // };
 
   return (
     <StyledContainer container>
@@ -150,17 +144,12 @@ const CapDetails = (props) => {
             width: "100%",
           }}
         >
-          {/* {!editMode && ( */}
           <EditButton
             sx={{ width: "100%" }}
-            // onClick={() => {
-            //   setEditMode(true);
-            // }}
             variant="outlined"
           >
             Edit
           </EditButton>
-          {/* )} */}
         </Box>
       )}
     </StyledContainer>

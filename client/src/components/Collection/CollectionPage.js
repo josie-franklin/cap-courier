@@ -6,7 +6,6 @@ import SearchBar from "./CollectionComponents/SearchBar";
 import StyledDrawer from "../resuable/StyledDrawer";
 import StyledDialog from "../resuable/StyledDialog";
 import Filters from "./CollectionComponents/Filters";
-import CapAdd from "./CollectionComponents/CapAdd";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -32,11 +31,10 @@ const FilterButton = styled(StyledButton)(({ theme }) => ({
 }));
 
 const CollectionPage = () => {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const { getAllTags } = useContext(CollectionContext);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [addOpen, setAddOpen] = useState(false);
 
   useEffect(() => {
     getAllTags();
@@ -70,11 +68,7 @@ const CollectionPage = () => {
               </Grid>
               {isAuthenticated && (
                 <Grid item xs="auto">
-                  <StyledButton
-                    onClick={() => {
-                      setAddOpen(true);
-                    }}
-                  >
+                  <StyledButton>
                     <AddIcon />
                   </StyledButton>
                 </Grid>
@@ -89,17 +83,6 @@ const CollectionPage = () => {
         drawerOpen={filtersOpen}
         setDrawerOpen={setFiltersOpen}
         content={<Filters setFiltersOpen={setFiltersOpen}/>}
-      />
-
-      <StyledDrawer
-        drawerOpen={addOpen}
-        setDrawerOpen={setAddOpen}
-        content={<CapAdd />}
-      />
-      <StyledDialog
-        dialogOpen={addOpen}
-        setDialogOpen={setAddOpen}
-        content={<CapAdd />}
       />
     </Box>
   );
