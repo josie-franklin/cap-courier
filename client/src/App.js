@@ -52,19 +52,19 @@ const App = () => {
             <Route
               exact
               key="AboutMe"
-              path="/about-me"
+              path="/aboutme"
               element={<AboutMePage />}
             />
             <Route
               exact
               key="AboutWebsite"
-              path="/about-website"
+              path="/aboutwebsite"
               element={<AboutWebsitePage />}
             />
             <Route
               exact
               key="CapEdit"
-              path="/bottlecap-edit/:capId?"
+              path="/capedit/:capId?"
               element={<CapEditPage />}
             />
           </Routes>

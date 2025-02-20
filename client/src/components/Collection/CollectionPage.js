@@ -4,7 +4,6 @@ import { CollectionContext } from "../../context/CollectionContext";
 import SearchResults from "./CollectionComponents/SearchResults";
 import SearchBar from "./CollectionComponents/SearchBar";
 import StyledDrawer from "../resuable/StyledDrawer";
-import StyledDialog from "../resuable/StyledDialog";
 import Filters from "./CollectionComponents/Filters";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
